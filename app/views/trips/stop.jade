@@ -1,0 +1,35 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-12
+      h2#stop(data-id=trip._id.toString(), data-index=index, data-lat=stop.lat, data-lng=stop.lng)
+        span [#{stop.name}]
+        span ::
+        a(href='/trips/#{trip._id}')= trip.name
+  .row
+    .col-xs-12
+      #stop-map
+  .row
+    .col-xs-8
+      h3 Events
+      #events
+        - var events = stop.events
+        include events
+      h3 Photos
+      #photos
+        each photo in stop.photos
+          .photo(style='background-image:url(#{photo});')
+    .col-xs-4
+      .form-group
+        input.form-control#event-name(type='text')
+      .form-group
+        button.btn.btn-success#event-add Add Event
+      form(role='form', method='post', action='/trips/#{trip._id}/stops/#{index}/photos', enctype='multipart/form-data')
+        .form-group
+          label(for='photos') Photos
+          input.form-control#photos(type='file', name='photos', multiple=true)
+        button.btn.btn-primary(type='submit') Add Photos
+
+block scripts
+  script(src='/js/user/stop.js')
+

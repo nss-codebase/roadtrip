@@ -20,6 +20,11 @@ module.exports = function(app, express){
   app.post('/trips', trips.create);
   app.get('/trips', trips.index);
   app.get('/trips/:id', trips.show);
+  app.post('/trips/:id/stops', trips.addStop);
+  app.put('/trips/:id/distance', trips.distance);
+  app.get('/trips/:id/stops/:index', trips.showStop);
+  app.post('/trips/:id/stops/:index/events', trips.addEvent);
+  app.post('/trips/:id/stops/:index/photos', trips.addPhoto);
 
   console.log('Express: Routes Loaded');
 };

@@ -7,10 +7,36 @@ block content
         th Name
         th Origin
         th Destination
+        th Depart
+        th Arrive
+        th Cash
+        th MPG
+        th Gas
+        th Distance
+        th Gallons
+        th Cost
+        th Delta
+        th Car Photos
+        th Stops
+        th Events
+        th Trip Photos
     tbody
       each trip in trips
         tr
           td: a(href='/trips/#{trip._id}')= trip.name
           td= trip.origin.name
           td= trip.destination.name
+          td= moment(trip.dates.departure).format('MMM Do, YYYY')
+          td= moment(trip.dates.arrival).format('MMM Do, YYYY')
+          td= '$' + trip.cash.toFixed(2)
+          td= trip.mpg.toFixed(1)
+          td= '$' + trip.gas.toFixed(2)
+          td= trip.distance.toFixed(1)
+          td= trip.gallons.toFixed(1)
+          td= '$' + trip.cost.toFixed(2)
+          td= '$' + trip.delta.toFixed(2)
+          td= trip.carphotos.length
+          td= trip.stops.length
+          td= trip.events
+          td= trip.photos
 

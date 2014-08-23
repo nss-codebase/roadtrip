@@ -1,6 +1,34 @@
 extends ../shared/template
 block content
-  h2= trip.name
+  .row
+    .col-xs-12
+      h2#id(data-id=trip._id.toString())= trip.name
+      #show-map
+  .row
+    .col-xs-3
+      h3 Origin
+      #origin(data-name=trip.origin.name, data-lat=trip.origin.lat, data-lng=trip.origin.lng)= trip.origin.name
+      h3 Stops
+      each stop, index in trip.stops
+        .stop(data-name=stop.name, data-lat=stop.lat, data-lng=stop.lng): a(href='/trips/#{trip._id}/stops/#{index}')= stop.name
+      h3 Destination
+      #destination(data-name=trip.destination.name, data-lat=trip.destination.lat, data-lng=trip.destination.lng)= trip.destination.name
+    .col-xs-3
+      h3 Distance
+      #distance(data-distance=trip.distance)= trip.distance.toFixed(2) + ' miles'
+    .col-xs-3
+      form(role='form', method='post', action='/trips/#{trip._id}/stops')
+        .form-group
+          button.btn.btn-success#add-stop(type='button') Add Stop
+        .form-group.stop-group
+          input.form-control.stops(type='text', name='stops')
+        button.btn.btn-primary(type='submit') Add Stops to Trip
+    .col-xs-3
+      each carphoto in trip.carphotos
+        .car.pull-right.thumbnail(style='background-image:url(#{carphoto});')
+  .row
+    .col-xs-12
+      #directions
 
 block scripts
   script(src='/js/user/show-trip.js')
