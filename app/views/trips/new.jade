@@ -1,0 +1,44 @@
+extends ../shared/template
+block content
+  h2 New Trip
+  .row
+    .col-xs-6
+      form(role='form', method='post', action='/trips', enctype='multipart/form-data')
+        .form-group
+          label(for='name') Name
+          input.form-control#name(type='text', name='name', autofocus=true)
+        .form-group
+          label(for='cash') Cash
+          input.form-control#cash(type='number', step='0.01', name='cash')
+        .form-group
+          label(for='origin') Origin
+          input.form-control#origin(type='text', name='originname')
+          input(type='hidden', name='originlat')
+          input(type='hidden', name='originlng')
+        .form-group
+          label(for='destination') Destination
+          input.form-control#destination(type='text', name='destinationname')
+          input(type='hidden', name='destinationlat')
+          input(type='hidden', name='destinationlng')
+        .form-group
+          label(for='carphotos') Car Photos
+          input.form-control#carphotos(type='file', name='carphotos', multiple=true)
+        .form-group
+          label(for='mpg') MPG
+          input.form-control#mpg(type='number', step='0.01', name='mpg')
+        .form-group
+          label(for='gas') Gas Cost per Gallon
+          input.form-control#gas(type='number', step='0.01', name='gas')
+        .form-group
+          label(for='departure') Departure Date
+          input.form-control#departure(type='date', name='departure')
+        .form-group
+          label(for='arrival') Arrival Date
+          input.form-control#arrival(type='date', name='arrival')
+
+        button.btn.btn-primary(type='submit') Add Trip
+    .col-xs-6
+
+block scripts
+  script(src='/js/user/new-trip.js')
+
