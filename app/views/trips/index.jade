@@ -1,0 +1,16 @@
+extends ../shared/template
+block content
+  h2 Trip Listings
+  table.table.table-striped.table-hover
+    thead
+      tr
+        th Name
+        th Origin
+        th Destination
+    tbody
+      each trip in trips
+        tr
+          td: a(href='/trips/#{trip._id}')= trip.name
+          td= trip.origin.name
+          td= trip.destination.name
+

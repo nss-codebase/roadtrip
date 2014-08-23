@@ -16,3 +16,16 @@ exports.create = function(req, res){
   });
 };
 
+exports.index = function(req, res){
+  Trip.all(function(err, trips){
+    res.render('trips/index', {trips:trips});
+  });
+};
+
+
+exports.show = function(req, res){
+  Trip.findById(req.params.id, function(err, trip){
+    res.render('trips/show', {trip:trip});
+  });
+};
+

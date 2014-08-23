@@ -20,6 +20,11 @@ Object.defineProperty(Trip, 'collection', {
   get: function(){return global.mongodb.collection('trips');}
 });
 
+Trip.findById = function(id, cb){
+  var _id = Mongo.ObjectID(id);
+  Trip.collection.findOne({_id:_id}, cb);
+};
+
 Trip.all = function(cb){
   Trip.collection.find().toArray(cb);
 };

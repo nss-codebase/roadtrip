@@ -18,6 +18,8 @@ module.exports = function(app, express){
 
   app.get('/trips/new', trips.new);
   app.post('/trips', trips.create);
+  app.get('/trips', trips.index);
+  app.get('/trips/:id', trips.show);
 
   console.log('Express: Routes Loaded');
 };
